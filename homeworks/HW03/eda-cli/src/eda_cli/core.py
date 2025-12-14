@@ -170,7 +170,7 @@ def top_categories(
     return result
 
 
-def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> Dict[str, Any]:
+def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame, df: pd.DataFrame) -> Dict[str, Any]:
     """
     Простейшие эвристики «качества» данных:
     - слишком много пропусков;
@@ -184,6 +184,10 @@ def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> 
     max_missing_share = float(missing_df["missing_share"].max()) if not missing_df.empty else 0.0
     flags["max_missing_share"] = max_missing_share
     flags["too_many_missing"] = max_missing_share > 0.5
+
+    # новые эвристики
+    flags["has_constant_columns"] = has_constant_columns(summary)
+    flags["has_suspicious_id_duplicates"] = has_suspicious_id_duplicates(df)
 
     # Простейший «скор» качества
     score = 1.0
@@ -221,3 +225,21 @@ def flatten_summary_for_print(summary: DatasetSummary) -> pd.DataFrame:
             }
         )
     return pd.DataFrame(rows)
+
+# эвристика: флаг, показывающий, есть ли колонки, где все значения одинаковые
+def has_constant_columns(summary: DatasetSummary) -> bool:
+    for col in summary.columns:
+        if col.non_null > 0 and col.unique == 1:
+            return True
+    return False
+
+
+# эвристика: проверка, что идентификатор (например, user_id) уникален; при наличии дубликатов выставлять флаг.
+def has_suspicious_id_duplicates(df: pd.DataFrame) -> bool:
+    id_candidates = ["id", "user_id"]
+
+    for col in id_candidates:
+        if col in df.columns:
+            return df[col].duplicated().any()
+
+    return False

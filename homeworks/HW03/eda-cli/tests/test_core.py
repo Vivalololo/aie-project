@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import pandas as pd
 
+#для теста эвристики (флаг, показывающий, есть ли колонки, где все значения одинаковые)
+from eda_cli.core import summarize_dataset, has_constant_columns
+
 from eda_cli.core import (
     compute_quality_flags,
     correlation_matrix,
@@ -44,7 +47,7 @@ def test_missing_table_and_quality_flags():
     assert missing_df.loc["age", "missing_count"] == 1
 
     summary = summarize_dataset(df)
-    flags = compute_quality_flags(summary, missing_df)
+    flags = compute_quality_flags(summary, missing_df, df)
     assert 0.0 <= flags["quality_score"] <= 1.0
 
 
@@ -59,3 +62,23 @@ def test_correlation_and_top_categories():
     city_table = top_cats["city"]
     assert "value" in city_table.columns
     assert len(city_table) <= 2
+
+# новые тесты
+def test_has_constant_columns_true():
+    df = pd.DataFrame({
+        "A": [1, 1, 1],
+        "B": [1, 2, 3],
+    })
+    summary = summarize_dataset(df)
+
+    assert has_constant_columns(summary) is True
+
+
+def test_has_constant_columns_false():
+    df = pd.DataFrame({
+        "A": [1, 2, 3],
+        "B": [4, 5, 6],
+    })
+    summary = summarize_dataset(df)
+
+    assert has_constant_columns(summary) is False

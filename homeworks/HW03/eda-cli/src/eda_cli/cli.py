@@ -67,6 +67,8 @@ def report(
     sep: str = typer.Option(",", help="Разделитель в CSV."),
     encoding: str = typer.Option("utf-8", help="Кодировка файла."),
     max_hist_columns: int = typer.Option(6, help="Максимум числовых колонок для гистограмм."),
+    top_k_categories: int = typer.Option(5, help="Top-K значений для категориальных признаков."),
+    title: str = typer.Option("EDA-отчёт", help="Заголовок отчёта."),
 ) -> None:
     """
     Сгенерировать полный EDA-отчёт:
@@ -86,10 +88,12 @@ def report(
     summary_df = flatten_summary_for_print(summary)
     missing_df = missing_table(df)
     corr_df = correlation_matrix(df)
-    top_cats = top_categories(df)
+    #top_cats = top_categories(df) было
+    top_cats = top_categories(df, top_k=top_k_categories)
 
     # 2. Качество в целом
-    quality_flags = compute_quality_flags(summary, missing_df)
+    #quality_flags = compute_quality_flags(summary, missing_df) было
+    quality_flags = compute_quality_flags(summary, missing_df, df)
 
     # 3. Сохраняем табличные артефакты
     summary_df.to_csv(out_root / "summary.csv", index=False)
@@ -102,7 +106,8 @@ def report(
     # 4. Markdown-отчёт
     md_path = out_root / "report.md"
     with md_path.open("w", encoding="utf-8") as f:
-        f.write(f"# EDA-отчёт\n\n")
+        #f.write(f"# EDA-отчёт\n\n") было
+        f.write(f"# {title}\n\n") 
         f.write(f"Исходный файл: `{Path(path).name}`\n\n")
         f.write(f"Строк: **{summary.n_rows}**, столбцов: **{summary.n_cols}**\n\n")
 
