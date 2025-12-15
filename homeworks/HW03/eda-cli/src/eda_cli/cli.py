@@ -14,6 +14,8 @@ from .core import (
     missing_table,
     summarize_dataset,
     top_categories,
+    has_constant_columns,
+    has_suspicious_id_duplicates,
 )
 from .viz import (
     plot_correlation_heatmap,
@@ -90,6 +92,10 @@ def report(
     corr_df = correlation_matrix(df)
     #top_cats = top_categories(df) было
     top_cats = top_categories(df, top_k=top_k_categories)
+    #использование новых эвристик
+    const_collums = has_constant_columns(summary)
+    suspicious_id_dup = has_suspicious_id_duplicates(df)
+
 
     # 2. Качество в целом
     #quality_flags = compute_quality_flags(summary, missing_df) было
@@ -112,6 +118,10 @@ def report(
         f.write(f"Строк: **{summary.n_rows}**, столбцов: **{summary.n_cols}**\n\n")
 
         f.write("## Качество данных (эвристики)\n\n")
+        if suspicious_id_dup:
+            f.write(f"- Найдены дубликаты user_id\n")
+        if const_collums:
+            f.write(f"- Есть колонки с одинаковыми значениями\n")
         f.write(f"- Оценка качества: **{quality_flags['quality_score']:.2f}**\n")
         f.write(f"- Макс. доля пропусков по колонке: **{quality_flags['max_missing_share']:.2%}**\n")
         f.write(f"- Слишком мало строк: **{quality_flags['too_few_rows']}**\n")
