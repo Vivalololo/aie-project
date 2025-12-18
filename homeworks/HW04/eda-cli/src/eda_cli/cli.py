@@ -90,15 +90,12 @@ def report(
     summary_df = flatten_summary_for_print(summary)
     missing_df = missing_table(df)
     corr_df = correlation_matrix(df)
-    #top_cats = top_categories(df) было
     top_cats = top_categories(df, top_k=top_k_categories)
-    #использование новых эвристик
     const_collums = has_constant_columns(summary)
     suspicious_id_dup = has_suspicious_id_duplicates(df)
 
 
     # 2. Качество в целом
-    #quality_flags = compute_quality_flags(summary, missing_df) было
     quality_flags = compute_quality_flags(summary, missing_df, df)
 
     # 3. Сохраняем табличные артефакты
@@ -112,7 +109,6 @@ def report(
     # 4. Markdown-отчёт
     md_path = out_root / "report.md"
     with md_path.open("w", encoding="utf-8") as f:
-        #f.write(f"# EDA-отчёт\n\n") было
         f.write(f"# {title}\n\n") 
         f.write(f"Исходный файл: `{Path(path).name}`\n\n")
         f.write(f"Строк: **{summary.n_rows}**, столбцов: **{summary.n_cols}**\n\n")

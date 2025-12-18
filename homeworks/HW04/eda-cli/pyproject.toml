@@ -3,7 +3,7 @@ requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "s04"
+name = "eda-cli"
 version = "0.2.0"
 description = "Add your description here"
 readme = "README.md"
