@@ -51,12 +51,13 @@ confusion matrix:
  [ 275  670]]
  ```
 - Интерпретация: permutation importance
-Топ 5 важных признаков оказались f16, f01, f07, f08, f19
+
+Топ 5 важных признаков оказались f16, f01, f07, f08, f19 \
 ![Image](./artifacts/figures/importancees.png)
 \
 \
 \
-График метрики roc-auc трех моделей
+График метрики roc-auc трех моделей \
 ![Image](./artifacts/figures/roc-auc.png)
 
 
