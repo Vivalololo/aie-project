@@ -28,6 +28,7 @@ Baseline:
 - GradientBoosting
 
 ## 4. Results
+
 |Model|Accuracy|F1|ROC-AUC|
 |:-|:-|:-|:-|
 |DummyClassifier|0.7375|0.0|0.5|
@@ -39,7 +40,7 @@ Baseline:
 По критерию ROC-AUC выигрывает модель GradientBoosting
 
 ## 5. Analysis
-что будет, если поменять `random_state` (хотя бы 5 прогонов для 1-2 моделей) – кратко
+
 - Устойчивость:
 При изменении параметра random_state на моделях `DecisionTree` и `RandomForest`, DecisionTree показывает стандартное отклонение f1 равно 0.06, что говорит о низкой устойчивости по сравнению с моделью RandomForest (около 0.025). Стандартное отклонение roc-auc у модели DecisionTree равно 0.0052, у модели RandomForest - 0.007.
 - Ошибки: confusion matrix для лучшей модели (GradientBoosting):
@@ -50,13 +51,14 @@ confusion matrix:
  [ 275  670]]
  ```
 - Интерпретация: permutation importance
-![Image](./artifacts/figures/importancees.png)
 Топ 5 важных признаков оказались f16, f01, f07, f08, f19
+![Image](./artifacts/figures/importancees.png)
 \
 \
 \
-![Image](./artifacts/figures/roc-auc.png)
 График метрики roc-auc трех моделей
+![Image](./artifacts/figures/roc-auc.png)
+
 
 ## 6. Conclusion
 
