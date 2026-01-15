@@ -1,0 +1,31 @@
+[
+    {
+        "dataset": "S07-hw-dataset-01.csv",
+        "best_method": {
+            "algo": "kmeans",
+            "params": {
+                "k": 2
+            }
+        }
+    },
+    {
+        "dataset": "S07-hw-dataset-02.csv",
+        "best_method": {
+            "algo": "agglomerative",
+            "params": {
+                "k": 2,
+                "linkage": "average"
+            }
+        }
+    },
+    {
+        "dataset": "S07-hw-dataset-03.csv",
+        "best_method": {
+            "algo": "agglomerative",
+            "params": {
+                "k": 2,
+                "linkage": "average"
+            }
+        }
+    }
+]

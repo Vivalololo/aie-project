@@ -1,0 +1,30 @@
+{
+    "pca_dim:": 30,
+    "kmeans_ks:": [
+        2,
+        "...",
+        20
+    ],
+    "dbscan eps:": [
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5
+    ],
+    "dbscan min_samples:": [
+        3,
+        5,
+        10
+    ],
+    "agg ks:": [
+        2,
+        "...",
+        7
+    ],
+    "agg linkages:": [
+        "ward",
+        "complete",
+        "average"
+    ]
+}
