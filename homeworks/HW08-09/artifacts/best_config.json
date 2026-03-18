@@ -1,18 +1,14 @@
 {
     "dataset": "CIFAR10",
     "seed": 42,
-    "model": {
-        "hidden_dims": "256-128",
-        "activation": "relu",
-        "dropout": 0.0,
-        "batchnorm": true,
-        "num_classes": 10
-    },
-    "training": {
-        "optimizer": "Adam",
-        "lr": 0.001,
-        "epochs": 17,
-        "best_val_accuracy": 0.5540406050955414,
-        "best_val_loss": 1.3000992035410206
-    }
+    "hidden_dims": "256-128",
+    "activation": "relu",
+    "dropout": 0.0,
+    "batchnorm": true,
+    "num_classes": 10,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "epochs": 17,
+    "best_val_accuracy": 0.5540406050955414,
+    "best_val_loss": 1.3000992035410206
 }
