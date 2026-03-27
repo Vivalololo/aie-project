@@ -1,0 +1,20 @@
+{
+    "experiment_id": "R1",
+    "model": "GRU",
+    "dataset": "S12-hw-dataset",
+    "features": "target, dayofweek, month, dow_sin, dow_cos,month_sin, month_cos, lag_1, lag_2, lag_3, lag_7, lag_14, rolling_mean_7, rolling_std_7",
+    "window_size": 28,
+    "horizon": 1,
+    "input_size": 1,
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.0,
+    "batch_size": 32,
+    "optimizer": "Adam",
+    "learning_rate": 0.0005,
+    "epochs": 35,
+    "scaler": "StandardScaler",
+    "best_val_mae": 5.646318435668945,
+    "test_mae": 6.72247838973999,
+    "seed": 42
+}
