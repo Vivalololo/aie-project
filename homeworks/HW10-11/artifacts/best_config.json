@@ -1,0 +1,20 @@
+{
+    "dataset": "CIFAR100",
+    "seed": 42,
+    "fast_mode": false,
+    "mean": [
+        0.5071,
+        0.4867,
+        0.4408
+    ],
+    "std": [
+        0.2675,
+        0.2565,
+        0.2761
+    ],
+    "exp": "C4",
+    "optimizer": "Adam",
+    "epochs": 8,
+    "best_val_accuracy": 0.6925,
+    "best_val_loss": 1.1893328184127807
+}
