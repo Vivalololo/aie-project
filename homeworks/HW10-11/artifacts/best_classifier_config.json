@@ -1,7 +1,7 @@
 {
     "dataset": "CIFAR100",
     "seed": 42,
-    "fast_mode": false,
+    "fast_mode": true,
     "mean": [
         0.5071,
         0.4867,
@@ -12,9 +12,18 @@
         0.2565,
         0.2761
     ],
+    "num_classes": 100,
     "exp": "C4",
     "optimizer": "Adam",
-    "epochs": 8,
-    "best_val_accuracy": 0.6925,
-    "best_val_loss": 1.1893328184127807
+    "epochs": 3,
+    "lr": 0.001,
+    "best_val_accuracy": 0.528,
+    "best_val_loss": 1.7465400409698486,
+    "transforms": {
+        "cnn": "RandomHorizontalFlip, RandomCrop, ToTensor, Normalize",
+        "resnet": "ResNet18_Weights.IMAGENET1K_V1"
+    },
+    "val_ratio": 0.2,
+    "n_train": 40000,
+    "n_val": 10000
 }
