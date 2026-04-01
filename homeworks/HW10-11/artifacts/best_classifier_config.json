@@ -2,6 +2,7 @@
     "dataset": "CIFAR100",
     "seed": 42,
     "fast_mode": true,
+    "model": "ResNet18 fine-tune layer4+fc",
     "mean": [
         0.5071,
         0.4867,
