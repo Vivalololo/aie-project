@@ -1,0 +1,11 @@
+query,before_retrieved_sources,after_retrieved_sources,changed
+Что такое эмбеддинги и зачем они нужны?,"doc_01, doc_22, doc_23","doc_01, doc_22, doc_23",False
+Как измеряется сходство между текстами в векторном пространстве?,"doc_03, doc_01, doc_04","doc_03, doc_01, doc_04",False
+Что такое FAISS и для чего он используется?,"doc_06, doc_05, doc_23","doc_06, doc_05, doc_23",False
+Какие бывают индексы в FAISS и чем они отличаются?,"doc_06, doc_14, doc_07","doc_06, doc_14, doc_07",False
+Что такое retrieval и как работает top-k поиск?,"doc_11, doc_27, doc_10","doc_11, doc_27, doc_10",False
+Какие метрики используются для оценки retrieval?,"doc_13, doc_14, doc_02","doc_13, doc_14, doc_02",False
+Что такое чанкинг и зачем нужен overlap?,"doc_17, doc_03, doc_15","doc_17, doc_03, doc_15",False
+Что такое RAG и из каких этапов состоит его pipeline?,"doc_19, doc_18, doc_10","doc_19, doc_18, doc_10",False
+Зачем нужен реранжировщик после первичного retrieval?,"doc_27, doc_10, doc_11","doc_31, doc_27",True
+Когда полезен гибридный поиск?,"doc_26, doc_05, doc_27","doc_32, doc_31, doc_26",True
