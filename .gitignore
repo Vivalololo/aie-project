@@ -55,3 +55,6 @@ logs/
 *.tmp
 *.bak
 *.old
+
+# Датасет в проекте
+project\data\dataset
