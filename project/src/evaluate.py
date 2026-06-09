@@ -32,7 +32,7 @@ def evaluate(model, loader, criterion):
         if not torch.isfinite(loss):
             return float("nan"), None, None, None
 
-        probs = torch.softmax(logits, dim=1)[:, 1]   # вероятность класса 1
+        probs = torch.softmax(logits, dim=1)[:, 1]
         preds = torch.argmax(logits, dim=1)
 
         bs = y.size(0)

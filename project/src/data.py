@@ -1,9 +1,12 @@
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import numpy as np
+import os
+import kagglehub
 
 
 IMG_SIZE = 224
+DATASET_NAME = "paultimothymooney/chest-xray-pneumonia"
 
 train_tf = transforms.Compose([
     transforms.Resize((IMG_SIZE, IMG_SIZE)),
@@ -17,10 +20,19 @@ eval_tf = transforms.Compose([
 ])
 
 
-def load_datasets(data_dir="./data/dataset/chest_xray"):
-    train_ds = datasets.ImageFolder(f"{data_dir}/train", transform=train_tf)
-    val_ds = datasets.ImageFolder(f"{data_dir}/val", transform=eval_tf)
-    test_ds = datasets.ImageFolder(f"{data_dir}/test", transform=eval_tf)
+def download_dataset(dataset_dir):
+    kagglehub.dataset_download(DATASET_NAME, output_dir=dataset_dir)
+    print("Path to dataset files:", dataset_dir)
+
+
+def load_datasets(dataset_dir="./data/dataset"):
+    if not os.path.isdir(f"{dataset_dir}\\chest_xray"):
+        print(f"The dataset has not been downloaded {dataset_dir}")
+        download_dataset(dataset_dir)
+
+    train_ds = datasets.ImageFolder(f"{dataset_dir}\\chest_xray\\train", transform=train_tf)
+    val_ds = datasets.ImageFolder(f"{dataset_dir}\\chest_xray\\val", transform=eval_tf)
+    test_ds = datasets.ImageFolder(f"{dataset_dir}\\chest_xray\\test", transform=eval_tf)
     return train_ds, val_ds, test_ds
 
 
